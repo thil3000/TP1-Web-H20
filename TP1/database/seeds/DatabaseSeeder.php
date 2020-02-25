@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $sql = file_get_contents(__DIR__ . '/tp1.sql');
+        DB::statement($sql);
+        
         // $this->call(UsersTableSeeder::class);
     }
 }
