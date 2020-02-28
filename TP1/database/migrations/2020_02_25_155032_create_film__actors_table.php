@@ -17,7 +17,7 @@ class CreateFilmActorsTable extends Migration
             $table->integer('actor_id');
             $table->integer('film_id');
             $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamp('updated_at')->nullable();
         });
     }
 
