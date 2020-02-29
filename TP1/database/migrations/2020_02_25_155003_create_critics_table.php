@@ -15,9 +15,11 @@ class CreateCriticsTable extends Migration
     {
         Schema::create('critics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
-            $table->integer('film_id');
-            $table->float('score');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('film_id')->unsigned();
+            $table->foreign('film_id')->references('id')->on('films');
+            $table->decimal('score', 3 , 1);
             $table->string('comment');
             $table->timestamp('created_at');
             $table->timestamp('updated_at');

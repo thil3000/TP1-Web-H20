@@ -15,14 +15,15 @@ class CreateFilmsTable extends Migration
     {
         Schema::create('films', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('release_year');
+            $table->string('title', 50);
+            $table->string('release_year', 4);
             $table->integer('length');
             $table->string('description');
-            $table->string('rating');
-            $table->integer('langage_id');
-            $table->string('special_features');
-            $table->string('image');
+            $table->string('rating', 5);
+            $table->integer('langage_id')->unsigned();
+            $table->foreign('langage_id')->references('id')->on('langages');
+            $table->string('special_features', 50);
+            $table->string('image', 40);
             $table->timestamp('created_at');
         });
     }

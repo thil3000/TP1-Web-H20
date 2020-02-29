@@ -15,7 +15,7 @@ class CreateLangagesTable extends Migration
     {
         Schema::create('langages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('name', 50);
         });
     }
 
