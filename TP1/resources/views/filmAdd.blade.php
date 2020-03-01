@@ -1,4 +1,5 @@
 {{-- <a href="films">film adding</a> --}}
+<title>la section film</title>
 <?php
 echo Form::open(['url' => 'films', 'method' => 'post']);
 echo Form::text('id','1');
