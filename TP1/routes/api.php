@@ -20,3 +20,6 @@ Route::get('films','FilmsController@index');
 Route::post('films/add','FilmsController@store');
 Route::put('film/{id}','FilmsController@update');
 Route::get('film/{filmid}','FilmsController@show');
+
+
+Route::post('critics/add','CriticsController@store');

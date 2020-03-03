@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Critic;
+//use Illuminate\Http\Request;
+use App\Http\Requests\CreateCriticRequest;
 
 class CriticsController extends Controller
 {
@@ -23,7 +25,7 @@ class CriticsController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -32,9 +34,16 @@ class CriticsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCriticRequest $request)
     {
-        //
+        $critic = Critic::create([
+        'user_id' => $request->user_id,
+        'film_id' => $request->film_id,
+        'score' => $request->score,
+        'comment' => $request->comment
+        ]);
+        
+        return "Critic added";
     }
 
     /**

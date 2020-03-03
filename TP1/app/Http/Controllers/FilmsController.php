@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Film;
 use App\Http\Resources\FilmResource;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Http\Requests\CreateFilmRequest;
 
 class FilmsController extends Controller
@@ -27,16 +27,16 @@ class FilmsController extends Controller
      */
     public function store(CreateFilmRequest $request)
     {
-        $objet = Film::create([
-        'title' => $request->title,
-        'release_year' => $request->release_year,
-        'length' => $request->length,
-        'description' => $request->description,
-        'rating' => $request->rating,
-        'language_id' => $request->language_id,
-        'special_features' => $request->special_features,
-        'image' => $request->image,
-        ]);
+            $film = Film::create([
+            'title' => $request->title,
+            'release_year' => $request->release_year,
+            'length' => $request->length,
+            'description' => $request->description,
+            'rating' => $request->rating,
+            'language_id' => $request->language_id,
+            'special_features' => $request->special_features,
+            'image' => $request->image,
+            ]);
         
 //         $donnees = $request->validated();
 //         $film = new Film();
@@ -52,7 +52,7 @@ class FilmsController extends Controller
 //         $film->image = $request->image;
 //         $film->save();
 
-        return "Marche";//view('filmAddedConfirmation', compact('film'));
+            return "Marche";//view('filmAddedConfirmation', compact('film'));
     }
 
     /**
