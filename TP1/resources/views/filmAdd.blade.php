@@ -11,7 +11,6 @@ echo Form::text('rating','R');
 echo Form::text('langage_id',1);
 echo Form::text('special_features',1);
 echo Form::text('image');
-echo Form::text('created_at');
 echo Form::submit('Submit');
 echo Form::close();
 ?>

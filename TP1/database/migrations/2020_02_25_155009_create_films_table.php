@@ -20,11 +20,11 @@ class CreateFilmsTable extends Migration
             $table->integer('length');
             $table->string('description');
             $table->string('rating', 5);
-            $table->integer('langage_id')->unsigned();
+            $table->bigInteger('langage_id')->unsigned();
             $table->foreign('langage_id')->references('id')->on('langages');
-            $table->string('special_features', 50);
+            $table->string('special_features', 200);
             $table->string('image', 40);
-            $table->timestamp('created_at');
+            $table->timestamp('created_at')->useCurrent();
         });
     }
 
