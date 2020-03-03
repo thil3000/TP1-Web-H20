@@ -21,7 +21,7 @@ class CreateFilmsTable extends Migration
             $table->string('description');
             $table->string('rating', 5);
             $table->bigInteger('language_id')->unsigned();
-            $table->foreign('language_id')->references('id')->on('langages');
+            $table->foreign('language_id')->references('id')->on('language');
             $table->string('special_features', 200);
             $table->string('image', 40);
             $table->timestamp('created_at')->useCurrent();
