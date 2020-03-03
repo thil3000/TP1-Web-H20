@@ -18,8 +18,8 @@ class CreateFilmActorsTable extends Migration
             $table->foreign('actor_id')->references('id')->on('actors');
             $table->bigInteger('film_id')->unsigned();
             $table->foreign('film_id')->references('id')->on('films');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
+            $table->datetime('created_at');
+            $table->datetime('updated_at')->nullable();
         });
     }
 
