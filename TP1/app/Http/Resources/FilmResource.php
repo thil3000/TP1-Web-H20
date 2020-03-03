@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Film extends JsonResource
+class FilmResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,6 +14,10 @@ class Film extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+        'id' => $this->id,
+        'title' => $this->title,
+        'release_year' => $this->release_year
+        ];
     }
 }

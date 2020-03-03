@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Film;
+use App\Http\Resources\FilmResource;
 use Illuminate\Http\Request;
-use DateTime;
 
 class FilmsController extends Controller
 {
@@ -15,7 +15,7 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        return 'rr';
+        return Film::collection(Film::all());
     }
 
     /**
@@ -44,7 +44,7 @@ class FilmsController extends Controller
          $film->length = $request->length;
          $film->description = $request->description;
          $film->rating = $request->rating;                                //A REVOIR POUR QUE TRANSFERT SE FASSE DANS BD
-         $film->langage_id = $request->langage_id;
+         $film->language_id = $request->language_id;
          $film->special_features = $request->special_features;
          $film->image = $request->image;
          $film->save();
@@ -58,9 +58,9 @@ class FilmsController extends Controller
      * @param  \App\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function show(Film $film)
+    public function show(int $filmid)
     {
-        //
+        return new FilmResource(Film::find($filmid));
     }
 
     /**

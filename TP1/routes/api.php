@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('films','FilmsController@index');
 Route::post('films/add','FilmsController@store');
 Route::put('film/{id}','FilmsController@update');
+Route::get('film/{id}','FilmsController@show');
