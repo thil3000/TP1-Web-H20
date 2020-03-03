@@ -14,6 +14,10 @@ class FilmsCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return '';
+        return [
+        'id' => $this->id,
+        'title' => $this->title,
+        'release_year' => $this->release_year
+        ];
     }
 }

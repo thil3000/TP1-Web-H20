@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Film;
 use App\Http\Resources\FilmResource;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateFilmRequest;
 
 class FilmsController extends Controller
 {
@@ -15,17 +16,7 @@ class FilmsController extends Controller
      */
     public function index()
     {
-        return Film::collection(Film::all());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('filmAdd');
+        return Film::paginate(20);
     }
 
     /**
@@ -34,22 +25,34 @@ class FilmsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateFilmRequest $request)
     {
-         $film = new Film();
-         $film->timestamps = false;
-         $film->id = $request->id;
-         $film->title = $request->title;
-         $film->release_year = $request->release_year;
-         $film->length = $request->length;
-         $film->description = $request->description;
-         $film->rating = $request->rating;                                //A REVOIR POUR QUE TRANSFERT SE FASSE DANS BD
-         $film->language_id = $request->language_id;
-         $film->special_features = $request->special_features;
-         $film->image = $request->image;
-         $film->save();
+        $objet = Film::create([
+        'title' => $request->title,
+        'release_year' => $request->release_year,
+        'length' => $request->length,
+        'description' => $request->description,
+        'rating' => $request->rating,
+        'language_id' => $request->language_id,
+        'special_features' => $request->special_features,
+        'image' => $request->image,
+        ]);
+        
+//         $donnees = $request->validated();
+//         $film = new Film();
+//         $film->timestamps = false;
+//         $film->id = $request->id;
+//         $film->title = $request->title;
+//         $film->release_year = $request->release_year;
+//         $film->length = $request->length;
+//         $film->description = $request->description;
+//         $film->rating = $request->rating;                                //A REVOIR POUR QUE TRANSFERT SE FASSE DANS BD
+//         $film->language_id = $request->language_id;
+//         $film->special_features = $request->special_features;
+//         $film->image = $request->image;
+//         $film->save();
 
-        return view('filmAddedConfirmation', compact('film'));
+        return "Marche";//view('filmAddedConfirmation', compact('film'));
     }
 
     /**
@@ -58,9 +61,9 @@ class FilmsController extends Controller
      * @param  \App\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function show(int $filmid)
+    public function show(Film $filmid)
     {
-        return new FilmResource(Film::find($filmid));
+        return new FilmResource($filmid);
     }
 
     /**

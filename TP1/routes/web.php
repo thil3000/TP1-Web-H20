@@ -14,6 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('films/add', 'FilmsController@create');
-Route::post('films', 'FilmsController@store');
