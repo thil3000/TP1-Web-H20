@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Film;
 use App\Http\Resources\FilmResource;
 use App\Http\Resources\ActorsCollection;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Requests\CreateFilmRequest;
 
 class FilmsController extends Controller
@@ -62,7 +62,20 @@ class FilmsController extends Controller
      */
     public function update(Request $request, Film $film)
     {
-        //
+        
+        
+        $film->title = $request->input('title');
+        $film->body = $request->input('release_year');
+        $film->body = $request->input('length');
+        $film->body = $request->input('description');
+        $film->body = $request->input('rating');
+        $film->body = $request->input('language_id');
+        $film->body = $request->input('special_features');
+        $film->body = $request->input('image');
+        $film->completed = $request->input('completed');
+        $film->update();
+
+        return "Sucess updating film: " . $film->title;    
     }
 
     /**
