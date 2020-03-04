@@ -21,17 +21,17 @@ class UserController extends Controller
     {
         $HASH = ['MOTDEPASS'];
 
+        $data = $request->validated();
         $user = User::create([
-            'id' => $request->id,
-            'login' => $request->login,
-            'password' => bcrypt($request->password,[$HASH]),
-            'email' => $request->email,
-            'last_name' => $request->last_name,
-            'frist_name' => $request->frist_name,
-            'role_id' => $request->role_id,
+            'login' => $data['login'],
+            'password' => bcrypt($data['password'],[$HASH]),
+            'email' => $data['email'],
+            'last_name' => $data['last_name'],
+            'first_name' => $data['first_name'],
+            'role_id' => 1,
             ]);
             
-            return "User added";
+        return "User added";
     }
 
     /**
