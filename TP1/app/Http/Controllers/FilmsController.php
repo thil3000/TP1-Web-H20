@@ -66,15 +66,14 @@ class FilmsController extends Controller
         
         
         $film->title = $request->input('title');
-        $film->body = $request->input('release_year');
-        $film->body = $request->input('length');
-        $film->body = $request->input('description');
-        $film->body = $request->input('rating');
-        $film->body = $request->input('language_id');
-        $film->body = $request->input('special_features');
-        $film->body = $request->input('image');
-        $film->completed = $request->input('completed');
-        $film->update();
+        $film->release_year = $request->input('release_year');
+        $film->length = $request->input('length');
+        $film->description = $request->input('description');
+        $film->rating = $request->input('rating');
+        $film->language_id = $request->input('language_id');
+        $film->special_features = $request->input('special_features');
+        $film->image = $request->input('image');
+        $film->save();
 
         return "Sucess updating film: " . $film->title;    
     }
