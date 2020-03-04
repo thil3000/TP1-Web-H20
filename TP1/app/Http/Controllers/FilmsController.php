@@ -91,4 +91,20 @@ class FilmsController extends Controller
         $film->delete();
         return "succes!!";
     }
+
+      /**
+     * search the specified resource from storage.
+     *
+     * 
+     * @param  \App\Film  $film
+     * @return \Illuminate\Http\Response
+     */
+
+    public function search(Request $request, Film $film)
+    {
+
+        $film->delete();
+        return "succes!!";
+    }
+    
 }

@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('films','FilmsController@index');                                 //Currently working
 Route::post('film/add','FilmsController@store');                             //Currently working
-Route::put('film/{film}','FilmsController@update');
+Route::put('film/{film}','FilmsController@update');                          //Currently working
 Route::delete('film/{film}','FilmsController@destroy');                      //Currently working
 Route::get('film/{film}','FilmsController@show');                            //Currently working
 
