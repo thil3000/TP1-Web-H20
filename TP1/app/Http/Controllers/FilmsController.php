@@ -28,15 +28,16 @@ class FilmsController extends Controller
      */
     public function store(CreateFilmRequest $request)
     {
+            $data = $request->validated();
             $film = Film::create([
-            'title' => $request->title,
-            'release_year' => $request->release_year,
-            'length' => $request->length,
-            'description' => $request->description,
-            'rating' => $request->rating,
-            'language_id' => $request->language_id,
-            'special_features' => $request->special_features,
-            'image' => $request->image,
+            'title' => $data['title'],
+            'release_year' => $data['release_year'],
+            'length' => $data['length'],
+            'description' => $data['description'],
+            'rating' => $data['rating'],
+            'language_id' => $data['language_id'],
+            'special_features' => $data['special_features'],
+            'image' => $data['image']
             ]);
 
             return "Marche";

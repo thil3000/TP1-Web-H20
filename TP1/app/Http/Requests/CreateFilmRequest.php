@@ -23,8 +23,15 @@ class CreateFilmRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+         return [
+        'title' => 'required|min:2|max:50',
+        'release_year' => 'required|min:4|max:4',
+        'length' => 'required',
+        'description' => 'required|max:255',
+        'rating' => 'required',
+        'language_id' => 'required',
+        'special_features' => 'required',
+        'image' => 'required',
         ];
     }
 }

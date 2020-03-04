@@ -28,7 +28,7 @@ Route::get('film/{film}','FilmsController@show');
 Route::get('film/{filmid}/actors','ActorsController@showActors');
 
 //Critics
-Route::post('critics/add','CriticsController@store');
+Route::post('critic/add','CriticsController@store');
 
 //Users
 Route::post('user/add','UserController@store');
