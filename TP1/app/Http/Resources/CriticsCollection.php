@@ -18,7 +18,7 @@ class CriticsCollection extends ResourceCollection
     {           
         $criticsResourced = [];
         foreach ($this->collection as $critic) {
-            array_push($criticsResourced, new CriticResource(Critic::find($critic->id)));
+            array_push($criticsResourced, new CriticResource($critic));
         }
         return $criticsResourced;
     }

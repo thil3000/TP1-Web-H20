@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Actor;
 
 class ActorsCollection extends ResourceCollection
 {
@@ -16,8 +17,8 @@ class ActorsCollection extends ResourceCollection
     {
        $actors = [];
         foreach ($this->collection as $actor) {
-            array_push($actors,new ActorResource(Actor::find($actor->actor_id)));
+            array_push($actors,new ActorResource($actor));
         }
-
+        return $actors;
     }
 }

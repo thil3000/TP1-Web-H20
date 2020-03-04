@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Http\Resources\UsersResource;
+use App\Http\Resources\UserResource;
 use App\Http\Requests\CreateUserRequest;
 
 use Illuminate\Http\Request;
@@ -42,7 +42,7 @@ class UserController extends Controller
      */
     public function show(User $userid)
     {
-        return new UsersResource($userid);
+        return new UserResource($userid);
     }
 
     /**

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Actor_Film;
 use App\Actor;
 use App\Http\Resources\ActorResource;
+use App\Http\Resources\ActorsCollection;
 
 class ActorsController extends Controller
 {
@@ -17,9 +18,9 @@ class ActorsController extends Controller
      */
     public function showActors(int $filmid)
     {
-        $flim_actor_entries = Actor_Film::all()->where('film_id',$filmid);
+        $flim_actor = Actor_Film::all()->where('film_id',$filmid);
         $actors=[];
-        foreach ($flim_actor_entries as $entry) {
+        foreach ($flim_actor as $entry) {
             array_push($actors,Actor::find($entry->actor_id));
         }
     
