@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Film;
 use App\Http\Resources\FilmResource;
+use App\Http\Resources\ActorsCollection;
 //use Illuminate\Http\Request;
 use App\Http\Requests\CreateFilmRequest;
 
@@ -37,22 +38,8 @@ class FilmsController extends Controller
             'special_features' => $request->special_features,
             'image' => $request->image,
             ]);
-        
-//         $donnees = $request->validated();
-//         $film = new Film();
-//         $film->timestamps = false;
-//         $film->id = $request->id;
-//         $film->title = $request->title;
-//         $film->release_year = $request->release_year;
-//         $film->length = $request->length;
-//         $film->description = $request->description;
-//         $film->rating = $request->rating;                                //A REVOIR POUR QUE TRANSFERT SE FASSE DANS BD
-//         $film->language_id = $request->language_id;
-//         $film->special_features = $request->special_features;
-//         $film->image = $request->image;
-//         $film->save();
 
-            return "Marche";//view('filmAddedConfirmation', compact('film'));
+            return "Marche";
     }
 
     /**
@@ -61,20 +48,9 @@ class FilmsController extends Controller
      * @param  \App\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function show(Film $filmid)
+    public function show(Film $film)
     {
-        return new FilmResource($filmid);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Film  $film
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Film $film)
-    {
-        //
+        return new FilmResource($film);
     }
 
     /**

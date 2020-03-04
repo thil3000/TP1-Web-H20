@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class FilmsCollection extends ResourceCollection
+class ActorsCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,10 +14,10 @@ class FilmsCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-        'id' => $this->id,
-        'title' => $this->title,
-        'release_year' => $this->release_year
-        ];
+       $actors = [];
+        foreach ($this->collection as $actor) {
+            array_push($actors,new ActorResource(Actor::find($actor->actor_id)));
+        }
+
     }
 }

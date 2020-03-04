@@ -17,9 +17,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('films','FilmsController@index');
-Route::post('films/add','FilmsController@store');
-Route::put('film/{id}','FilmsController@update');
-Route::get('film/{filmid}','FilmsController@show');
+
+Route::post('film/add','FilmsController@store');
+// Route::put('film/{id}','FilmsController@update');
+// Route::delete('film/{id}','FilmsController@destroy');
+Route::get('film/{film}','FilmsController@show');
+
+//Actors
+Route::get('film/{filmid}/actors','ActorsController@showActors');
 
 
 Route::post('critics/add','CriticsController@store');
