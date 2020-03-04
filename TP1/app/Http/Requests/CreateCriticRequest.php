@@ -24,7 +24,7 @@ class CreateCriticRequest extends FormRequest
     public function rules()
     {
         return [
-        ''
+        'user_is' => 'required',
         'comment' => 'required|min:5|max:255',
         'score' => 'required',
         'film_id' => 'required'
