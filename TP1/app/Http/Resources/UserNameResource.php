@@ -14,6 +14,6 @@ class UserNameResource extends JsonResource
      */
     public function toArray($request)
     {
-        return $this->frist_name;
+        return $this->first_name;
     }
 }

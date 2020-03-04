@@ -19,8 +19,8 @@ class UserResource extends JsonResource
             'login' => $this->login,
             'email' => $this->email,
             'last_name' => $this->last_name,
-            'frist_name' => $this->frist_name,
-            'role_id' => Role::all()->where('role_id',$this->id)
+            'first_name' => $this->first_name,
+            'role_id' => new RoleResource(Role::all()->where('id',$this->role_id)->first())
             ];
     }
 }
