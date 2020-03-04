@@ -40,20 +40,28 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $userid)
+    public function show(User $user)
     {
-        return new UserResource($userid);
+        return new UserResource($user);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->login = $request->input('login');
+        $user->password = $request->input('password');
+        $user->email = $request->input('email');
+        $user->last_name = $request->input('last_name');
+        $user->first_name = $request->input('first_name');
+        $user->role_id = $request->input('role_id');
+        $user->save();
+
+        return "Sucess updating user: " . $user->login;    
     }
 }

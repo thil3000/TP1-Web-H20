@@ -81,11 +81,14 @@ class FilmsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * 
      * @param  \App\Film  $film
      * @return \Illuminate\Http\Response
      */
     public function destroy(Film $film)
     {
-        //
+
+        $film->delete();
+        return "succes!!";
     }
 }
