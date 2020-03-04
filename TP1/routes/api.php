@@ -20,8 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Film
 
 Route::get('films','FilmsController@index');                                 //Currently working
-Route::post('film/add','FilmsController@store');                             //Currently working
-Route::put('film/{id}','FilmsController@update');
+Route::post('film/add','FilmsController@store')-> middleware('auth:api');    //Currently working
+Route::put('film/{id}','FilmsController@update')-> middleware('auth:api');
 // Route::delete('film/{id}','FilmsController@destroy');
 Route::get('film/{film}','FilmsController@show');                            //Currently working
 
@@ -29,10 +29,14 @@ Route::get('film/{film}','FilmsController@show');                            //C
 Route::get('film/{filmid}/actors','ActorsController@showActors');            //Currently working
 
 //Critics
-Route::post('critic/add','CriticsController@store');                         //Currently working
+Route::post('critic/add','CriticsController@store')-> middleware('auth:api');//Currently working
 
 //Users
 Route::post('user/add','UserController@store');                              //Currently working
 // Route::put('user/{userid}','UserController@update');
 // Route::delete('user/{userid}','UserController@destroy');
-Route::get('user/{userid}','UserController@show');                           //Currently working
+Route::get('user/{userid}','UserController@show')-> middleware('auth:api');  //Currently working
+
+//Route::middleware('auth')->group( function(){
+//     
+//}
