@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use HasApiTokens, Notifiable;
 
 class User extends Model
 {
