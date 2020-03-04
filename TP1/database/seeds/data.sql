@@ -201,7 +201,7 @@ INSERT INTO `actors` (`id`, `first_name`, `last_name`, `birthdate`) VALUES
 (200, 'THORA', 'TEMPLE', '1000-01-01');
 
 
-INSERT INTO `language` (`id`, `name`) VALUES
+INSERT INTO `languages` (`id`, `name`) VALUES
 (1, 'English'),
 (2, 'Italian'),
 (3, 'Japanese'),
@@ -451,3 +451,16 @@ INSERT INTO `actors_film` (`actor_id`, `film_id`, `created_at`, `updated_at`) VA
 (47, 67, '2006-02-15 15:05:03', '1000-01-01 00:00:01'),
 (48, 99, '2006-02-15 15:05:03', '1000-01-01 00:00:01'),
 (49, 31, '2006-02-15 15:05:03', '1000-01-01 00:00:01');
+
+INSERT INTO `roles`(`id`, `name`) VALUES 
+(1,"admin"),
+(2,"user");
+
+INSERT INTO `users`(`id`, `login`, `password`, `email`, `last_name`, `frist_name`, `role_id`) VALUES
+(1,"tl3k","123456","123@123.com","Legare","Thierry",1),
+(2,"kyle","123456","123@123.com","Boies","Vincent",1);
+
+INSERT INTO `critics`(`id`, `user_id`, `film_id`, `score`, `comment`, `created_at`, `updated_at`) VALUES
+(1,1,1,8,"Good movie", '2006-02-15 15:05:03', '2000-01-01 00:00:01'),
+(2,1,3,4.5,"Weird movie", '2006-02-15 15:05:03', '2000-01-01 00:00:01'),
+(3,1,2,3,"Bad movie", '2006-02-15 15:05:03', '2000-01-01 00:00:01');
