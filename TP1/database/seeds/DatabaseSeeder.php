@@ -12,6 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('create database TP1-');
+        
         $this->call('RoleTableSeeder');
         $this->command->info('Role table seeded!');
         
@@ -33,9 +35,6 @@ class DatabaseSeeder extends Seeder
         
         $this->call('CriticTableSeeder');
         $this->command->info('Critic table seeded!');
-        
-       // $DB_Data = file_get_contents('database/seeds/data.sql');
-        //DB::raw($DB_Data);
     }
 }
 
