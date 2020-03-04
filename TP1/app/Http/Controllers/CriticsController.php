@@ -17,11 +17,12 @@ class CriticsController extends Controller
      */
     public function store(CreateCriticRequest $request)
     {
+        $data = $request->validated();
         $critic = Critic::create([
-        'user_id' => $request->user_id,
-        'film_id' => $request->film_id,
-        'score' => $request->score,
-        'comment' => $request->comment
+        'user_id' => $request->user_id,    //need authentification
+        'film_id' => $data['film_id'],
+        'score' => $data['score'],
+        'comment' => $data['comment']
         ]);
         
         return "Critic added";
