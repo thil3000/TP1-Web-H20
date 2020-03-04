@@ -3,8 +3,11 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use \App\Film;
+use \App\Actor;
 
-class test extends JsonResource
+
+class ActorFilmResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,6 +17,8 @@ class test extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'actor_id' => Actor::all()->where('film_name',$this->name)   //marche mais pas bien... envoy tout les actor a place de juste eux dans le film
+            ];
     }
 }
