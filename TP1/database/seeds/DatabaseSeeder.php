@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('create database TP1-');
+        //DB::statement('create database TP1-');
         
         $this->call('RoleTableSeeder');
         $this->command->info('Role table seeded!');
