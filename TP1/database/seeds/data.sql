@@ -99,7 +99,7 @@ INSERT INTO `actors` (`id`, `first_name`, `last_name`, `birthdate`) VALUES
 (98, 'CHRIS', 'BRIDGES', '1000-01-01'),
 (99, 'JIM', 'MOSTEL', '1000-01-01'),
 (100, 'SPENCER', 'DEPP', '1000-01-01'),
-(101, 'SUSAN', 'DAVIS', '1000-01-01'),
+(101, 'SUSAN', 'DAVIS', '1000-01-02'),
 (102, 'WALTER', 'TORN', '1000-01-01'),
 (103, 'MATTHEW', 'LEIGH', '1000-01-01'),
 (104, 'PENELOPE', 'CRONYN', '1000-01-01'),
@@ -458,9 +458,11 @@ INSERT INTO `roles`(`id`, `name`) VALUES
 
 INSERT INTO `users`(`id`, `login`, `password`, `email`, `last_name`, `frist_name`, `role_id`) VALUES
 (1,"tl3k","123456","123@123.com","Legare","Thierry",1),
-(2,"kyle","123456","123@123.com","Boies","Vincent",1);
+(2,"kyle","123456","123@123.com","Boies","Vincent",1),
+(3,"patate","123456","123@123.com","de Terre","Pomme",2),
+(4,"general","test","test@email.com","test-lastname","test-firstname",2);
 
 INSERT INTO `critics`(`id`, `user_id`, `film_id`, `score`, `comment`, `created_at`, `updated_at`) VALUES
 (1,1,1,8,"Good movie", '2006-02-15 15:05:03', '2000-01-01 00:00:01'),
-(2,1,3,4.5,"Weird movie", '2006-02-15 15:05:03', '2000-01-01 00:00:01'),
-(3,1,2,3,"Bad movie", '2006-02-15 15:05:03', '2000-01-01 00:00:01');
+(2,2,3,4.5,"Weird movie", '2006-02-15 15:05:03', '2000-01-01 00:00:01'),
+(3,3,2,3,"Bad movie", '2006-02-15 15:05:03', '2000-01-01 00:00:01');

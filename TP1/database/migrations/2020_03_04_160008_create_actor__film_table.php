@@ -15,14 +15,12 @@ class CreateActorFilmTable extends Migration
     {
         Schema::create('actor__film', function (Blueprint $table) {
             $table->bigInteger('actor_id')->unsigned();
-            $table->foreign('actor_id')->references('id')->on('actors');
-                
             $table->bigInteger('film_id')->unsigned();
-            $table->foreign('film_id')->references('id')->on('films');
-            
             $table->datetime('created_at');
             $table->datetime('updated_at')->nullable();
             
+            $table->foreign('actor_id')->references('id')->on('actors');
+            $table->foreign('film_id')->references('id')->on('films');
             $table->unique(['actor_id','film_id']);
             $table->primary(['actor_id','film_id']);
         });

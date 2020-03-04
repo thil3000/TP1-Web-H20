@@ -21,7 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('last_name', 50);
             $table->string('frist_name', 50);
             $table->bigInteger('role_id')->unsigned();
+            
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->unique('login');
         });
     }
 

@@ -18,6 +18,8 @@ class CreateActorsTable extends Migration
             $table->string('last_name', 50);
             $table->string('first_name', 50);
             $table->date('birthdate');
+            
+            $table->unique(['first_name','last_name','birthdate']);
         });
     }
 
