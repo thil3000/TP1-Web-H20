@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Actor extends Model
 {
-    protected $filable = ['id','last_name','first_name','birthdate'];
+    protected $filable = ['last_name','first_name','birthdate'];
 }

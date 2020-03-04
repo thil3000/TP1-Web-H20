@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Langage extends Model
 {
-    protected $fillable = ['id', 'name'];
+    protected $fillable = ['name'];
 
 }

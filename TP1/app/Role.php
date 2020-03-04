@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    protected $filable = ['id','name'];
+    protected $filable = ['name'];
 }
