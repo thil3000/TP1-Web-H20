@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Film;
 use App\Language;
 use App\Critic;
@@ -16,6 +17,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
 
+use Illuminate\Support\Facades\Auth;
+
 class FilmsController extends Controller
 {
     /**
@@ -27,6 +30,15 @@ class FilmsController extends Controller
     {
         return Film::paginate(20);
     }
+    
+    public function createToken(Request $request)
+    {
+        //var_dump(Auth::attempt(['login' => $request('login'), 'password' => $request('password')]));
+
+            $user = User::find(1);
+            $token = $user->createToken('token')->accessToken;
+            return $token;
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -36,6 +48,8 @@ class FilmsController extends Controller
      */
     public function store(CreateFilmRequest $request)
     {
+        var_dump(Auth::attempt());
+       // if(User::find(Auth::id())->role_id==Role::where('name','admin')->first()){
             $data = $request->validated();
             $film = Film::create([
             'title' => $data['title'],
@@ -49,6 +63,7 @@ class FilmsController extends Controller
             ]);
 
             return "Film added " . $data['title'];
+        //}
     }
 
     /**
