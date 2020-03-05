@@ -9,7 +9,9 @@ use App\Critic;
 use App\Actor;
 use App\Actor_Film;
 
+
 use App\Http\Resources\FilmResource;
+use App\Http\Resources\FilmsCollection;
 use App\Http\Resources\ActorResource;
 use App\Http\Resources\ActorsCollection;
 
@@ -131,18 +133,25 @@ class FilmsController extends Controller
     }
 
       /**
-     * search the specified resource from storage.
+     * search the keyword in storage.
      *
      * 
      * @param  \App\Film  $film
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
 
-    public function search(Request $request, Film $film)
+    public function search(Request $request)
     {
+         $data = $request->get('keyword');
 
-        //$film->delete();
-        return "succes!!";
+         $film = Film::where('title', 'like', "%$data%")
+                 ->orWhere('release_year', 'like', "%$data%")
+                 ->orWhere('length', 'like', "%$data%")
+                 ->orWhere('rating', 'like', "%$data%")
+                 ->paginate(20);
+                
+                return new FilmsCollection($film);
     }
     
 }
