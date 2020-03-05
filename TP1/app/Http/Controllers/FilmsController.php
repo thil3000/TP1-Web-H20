@@ -17,7 +17,6 @@ use App\Http\Resources\ActorsCollection;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
-use App\Http\Requests\SearchFilmRequest;
 
 class FilmsController extends Controller
 {
@@ -127,17 +126,16 @@ class FilmsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function search(SearchFilmRequest $request)
+    public function search(Request $request)
     {
-        // $data = $request->validate(); //to complete
-        $data = $request->get('keyword');
+         $data = $request->get('keyword');
 
          $film = Film::where('title', 'like', "%$data%")
                  ->orWhere('release_year', 'like', "%$data%")
                  ->orWhere('length', 'like', "%$data%")
                  ->orWhere('rating', 'like', "%$data%")
-                 ->get();   //manque le paginate aussi
-
+                 ->paginate(20);
+                
                 return new FilmsCollection($film);
     }
     
