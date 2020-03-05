@@ -21,7 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('films','FilmsController@index');                                                            //Currently working
 Route::get('film/{film}','FilmsController@show');                                                       //Currently working
-Route::get('films/search','FilmsController@search');                                                    //NEED REVIEW BUT KINDA WORKING   //key->> keyword= ...
+Route::get('films/search/{keyword}','FilmsController@search');                                                    //NEED REVIEW BUT KINDA WORKING   //key->> keyword= ...
 Route::get('film/{film}/actors','FilmsController@showActors');                                          //Currently working
 
 Route::post('film/add','FilmsController@store');//->middleware('Auth:api');                             //Currently working        401,403,422
