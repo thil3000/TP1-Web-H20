@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Film;
+use App\Language;
+use App\Critic;
+use App\Actor;
+use App\Actor_Film;
+
 use App\Http\Resources\FilmResource;
+use App\Http\Resources\ActorResource;
 use App\Http\Resources\ActorsCollection;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateFilmRequest;
+use App\Http\Requests\UpdateFilmRequest;
 
 class FilmsController extends Controller
 {
@@ -40,7 +48,7 @@ class FilmsController extends Controller
             'image' => $data['image']
             ]);
 
-            return "Marche";
+            return "Film added " . $data['title'];
     }
 
     /**
@@ -53,6 +61,19 @@ class FilmsController extends Controller
     {
         return new FilmResource($film);
     }
+    
+    
+    public function showActors(Film $film)
+    {
+        $actors_film = $film->actors()->get();
+        
+        $actorsResource = [];
+        foreach ($actors_film as $actor_entry) {
+            array_push($actorsResource,new ActorResource(Actor::find($actor_entry->actor_id)));
+        }
+        
+        return $actorsResource;
+    }
 
     /**
      * Update the specified resource in storage.
@@ -61,19 +82,19 @@ class FilmsController extends Controller
      * @param  \App\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Film $film)
+    public function update(UpdateFilmRequest $request, Film $film)
     {
-        
-        
-        $film->title = $request->input('title');
-        $film->release_year = $request->input('release_year');
-        $film->length = $request->input('length');
-        $film->description = $request->input('description');
-        $film->rating = $request->input('rating');
-        $film->language_id = $request->input('language_id');
-        $film->special_features = $request->input('special_features');
-        $film->image = $request->input('image');
-        $film->save();
+        $data = $request->validated();
+        $film->update([
+            'title' => $data['title'],
+            'release_year' => $data['release_year'],
+            'length' => $data['length'],
+            'description' => $data['description'],
+            'rating' => $data['rating'],
+            'language_id' => Language::where('id',$data['language_id'])->firstOrFail(),
+            'special_features' => $data['special_features'],
+            'image' => $data['image']
+        ]);
 
         return "Sucess updating film: " . $film->title;    
     }
@@ -81,11 +102,32 @@ class FilmsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * 
      * @param  \App\Film  $film
      * @return \Illuminate\Http\Response
      */
     public function destroy(Film $film)
     {
-        //
+        Actor_Film::where('film_id',$film->id)->delete();
+        Critic::where('film_id',$film->id)->delete();
+            
+        $film->delete();
+        return "Sucess deleting film: " . $film->title;
     }
+
+      /**
+     * search the specified resource from storage.
+     *
+     * 
+     * @param  \App\Film  $film
+     * @return \Illuminate\Http\Response
+     */
+
+    public function search(Request $request, Film $film)
+    {
+
+        //$film->delete();
+        return "succes!!";
+    }
+    
 }

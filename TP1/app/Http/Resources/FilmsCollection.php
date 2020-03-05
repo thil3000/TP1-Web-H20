@@ -3,9 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Actor;
 
-class ActorsCollection extends ResourceCollection
+class FilmsCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -14,11 +13,11 @@ class ActorsCollection extends ResourceCollection
      * @return array
      */
     public function toArray($request)
-    {
-       $actors = [];
-        foreach ($this->collection as $actor) {
-            array_push($actors,new ActorResource($actor));
+    {  
+        $filmResourced = [];
+        foreach ($this->collection as $film) {
+            array_push($filmResourced, new FilmResource($film));
         }
-        return $actors;
+        return $filmResourced;
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 use Illuminate\Http\Request;
 
@@ -28,7 +29,7 @@ class UserController extends Controller
             'email' => $data['email'],
             'last_name' => $data['last_name'],
             'first_name' => $data['first_name'],
-            'role_id' => 1,
+            'role_id' => 2,
             ]);
             
         return "User added";
@@ -40,20 +41,31 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $userid)
+    public function show(User $user)
     {
-        return new UserResource($userid);
+        return new UserResource($user);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $HASH = ['MOTDEPASS'];
+
+        $data = $request->validated();
+        $user->update([
+            'password' => bcrypt($data['password'],[$HASH]),
+            'email' => $data['email'],
+            'last_name' => $data['last_name'],
+            'first_name' => $data['first_name'],
+            'role_id' => $user->role_id,
+            ]);
+
+        return "Sucess updating user: " . $user->login;    
     }
 }
