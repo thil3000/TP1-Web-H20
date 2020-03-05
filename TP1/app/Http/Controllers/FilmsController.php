@@ -136,7 +136,7 @@ class FilmsController extends Controller
                  ->orWhere('release_year', 'like', "%$data%")
                  ->orWhere('length', 'like', "%$data%")
                  ->orWhere('rating', 'like', "%$data%")
-                 ->get();
+                 ->get();   //manque le paginate aussi
 
                 return new FilmsCollection($film);
     }
