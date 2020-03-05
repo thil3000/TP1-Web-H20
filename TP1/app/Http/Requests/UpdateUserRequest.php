@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateFilmRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,15 +23,11 @@ class CreateFilmRequest extends FormRequest
      */
     public function rules()
     {
-         return [
-        'title' => 'required|min:2|max:50',
-        'release_year' => 'required|min:4|max:4',
-        'length' => 'required|max:3',
-        'description' => 'required|max:255',
-        'rating' => 'required|max:5',
-        'language_id' => 'required',
-        'special_features' => 'required|max:200',
-        'image' => 'required|max"40',
+        return [
+        'email' => 'required|max:50',
+        'password' => 'required|min:8|max:64',
+        'last_name' => 'required|max:50',
+        'first_name' => 'required|max:50'
         ];
     }
 }

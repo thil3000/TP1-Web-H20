@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Film;
+use App\Language;
+use App\Critic;
+use App\Actor;
+use App\Actor_Film;
+
 use App\Http\Resources\FilmResource;
 use App\Http\Resources\FilmsCollection;
+use App\Http\Resources\ActorResource;
 use App\Http\Resources\ActorsCollection;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
@@ -43,7 +50,7 @@ class FilmsController extends Controller
             'image' => $data['image']
             ]);
 
-            return "Marche";
+            return "Film added " . $data['title'];
     }
 
     /**
@@ -55,6 +62,19 @@ class FilmsController extends Controller
     public function show(Film $film)
     {
         return new FilmResource($film);
+    }
+    
+    
+    public function showActors(Film $film)
+    {
+        $actors_film = $film->actors()->get();
+        
+        $actorsResource = [];
+        foreach ($actors_film as $actor_entry) {
+            array_push($actorsResource,new ActorResource(Actor::find($actor_entry->actor_id)));
+        }
+        
+        return $actorsResource;
     }
 
     /**
@@ -73,7 +93,7 @@ class FilmsController extends Controller
             'length' => $data['length'],
             'description' => $data['description'],
             'rating' => $data['rating'],
-            'language_id' => $data['language_id'],
+            'language_id' => Language::where('id',$data['language_id'])->firstOrFail(),
             'special_features' => $data['special_features'],
             'image' => $data['image']
         ]);
@@ -90,9 +110,11 @@ class FilmsController extends Controller
      */
     public function destroy(Film $film)
     {
-
+        Actor_Film::where('film_id',$film->id)->delete();
+        Critic::where('film_id',$film->id)->delete();
+            
         $film->delete();
-        return "succes!!";
+        return "Sucess deleting film: " . $film->title;
     }
 
       /**

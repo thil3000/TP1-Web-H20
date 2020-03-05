@@ -26,12 +26,12 @@ class UpdateFilmRequest extends FormRequest
         return [
         'title' => 'required|min:2|max:50',
         'release_year' => 'required|min:4|max:4',
-        'length' => 'required',
+        'length' => 'required|max:4',
         'description' => 'required|max:255',
-        'rating' => 'required',
+        'rating' => 'required|max:5',
         'language_id' => 'required',
-        'special_features' => 'required',
-        'image' => 'required',
+        'special_features' => 'required|max:200',
+        'image' => 'required|max:40',
         ];
 
     }
