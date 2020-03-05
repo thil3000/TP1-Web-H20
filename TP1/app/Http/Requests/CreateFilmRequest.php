@@ -31,7 +31,7 @@ class CreateFilmRequest extends FormRequest
         'rating' => 'required|max:5',
         'language_id' => 'required',
         'special_features' => 'required|max:200',
-        'image' => 'required|max"40',
+        'image' => 'required|max:40',
         ];
     }
 }
