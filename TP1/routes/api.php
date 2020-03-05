@@ -24,6 +24,7 @@ Route::post('film/add','FilmsController@store');                             //C
 Route::put('film/{film}','FilmsController@update');                          //Currently working
 Route::delete('film/{film}','FilmsController@destroy');                      //Currently working
 Route::get('film/{film}','FilmsController@show');                            //Currently working
+Route::get('films/search','FilmsController@search');                          //NEED REVIEW BUT KINDA WORKING   //key->> keyword= ...
 
 //Actors
 Route::get('film/{filmid}/actors','ActorsController@showActors');            //Currently working

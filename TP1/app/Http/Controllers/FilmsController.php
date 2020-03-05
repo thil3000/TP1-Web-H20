@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Film;
 use App\Http\Resources\FilmResource;
+use App\Http\Resources\FilmsCollection;
 use App\Http\Resources\ActorsCollection;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
+use App\Http\Requests\SearchFilmRequest;
 
 class FilmsController extends Controller
 {
@@ -94,18 +96,26 @@ class FilmsController extends Controller
     }
 
       /**
-     * search the specified resource from storage.
+     * search the keyword in storage.
      *
      * 
      * @param  \App\Film  $film
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
 
-    public function search(Request $request, Film $film)
+    public function search(SearchFilmRequest $request)
     {
+        // $data = $request->validate(); //to complete
+        $data = $request->get('keyword');
 
-        $film->delete();
-        return "succes!!";
+         $film = Film::where('title', 'like', "%$data%")
+                 ->orWhere('release_year', 'like', "%$data%")
+                 ->orWhere('length', 'like', "%$data%")
+                 ->orWhere('rating', 'like', "%$data%")
+                 ->get();
+
+                return new FilmsCollection($film);
     }
     
 }
