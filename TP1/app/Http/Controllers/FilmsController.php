@@ -50,7 +50,7 @@ class FilmsController extends Controller
             'image' => $data['image']
             ]);
 
-            return "Film added " . $data['title'];
+            return ['created'];
     }
 
     /**
