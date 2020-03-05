@@ -7,6 +7,7 @@ use App\Http\Resources\FilmResource;
 use App\Http\Resources\ActorsCollection;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateFilmRequest;
+use App\Http\Requests\UpdateFilmRequest;
 
 class FilmsController extends Controller
 {
@@ -61,19 +62,19 @@ class FilmsController extends Controller
      * @param  \App\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Film $film)
+    public function update(UpdateFilmRequest $request, Film $film)
     {
-        
-        
-        $film->title = $request->input('title');
-        $film->release_year = $request->input('release_year');
-        $film->length = $request->input('length');
-        $film->description = $request->input('description');
-        $film->rating = $request->input('rating');
-        $film->language_id = $request->input('language_id');
-        $film->special_features = $request->input('special_features');
-        $film->image = $request->input('image');
-        $film->save();
+        $data = $request->validated();
+        $film->update([
+            'title' => $data['title'],
+            'release_year' => $data['release_year'],
+            'length' => $data['length'],
+            'description' => $data['description'],
+            'rating' => $data['rating'],
+            'language_id' => $data['language_id'],
+            'special_features' => $data['special_features'],
+            'image' => $data['image']
+        ]);
 
         return "Sucess updating film: " . $film->title;    
     }
