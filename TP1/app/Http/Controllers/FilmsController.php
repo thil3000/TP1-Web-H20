@@ -127,7 +127,7 @@ class FilmsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function search(Request $request,Film $film)
+    public function search(Request $request, Film $film)
     {
         $film = $film->newModelQuery();
 
