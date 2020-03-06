@@ -127,35 +127,23 @@ class FilmsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function search(Request $request, $keyword)
-  
+    public function search(Request $request,Film $film)
     {
-        $film = Film::where('id',1);
-//        if($request->get('title') != ''){
-            $film = Film::where('title', 'like', '%'.$keyword.'%')->paginate(20);
-//        }
+        $film = $film->newModelQuery();
 
-        // elseif($data = $request->get('release_year') != '') {
-        //     $film = Film::where('release_year', 'like', "%$data%");
-        // }
-        // elseif($data = $request->get('length') != '' ){
-        //     $film = Film::where('length', 'like', "%$data%");
-        // }
-        // elseif($data = $request->get('rating') != ''){
-        //     $film = Film::where('rating', 'like', "%$data%");
-        // }
-
-        //  $film = Film::where('title', 'like', "%$data%")
-        //          ->orWhere('release_year', 'like', "%$data%")
-        //          ->orWhere('length', 'like', "%$data%")
-        //          ->orWhere('rating', 'like', "%$data%")
-        //          ->paginate(20);
+        if ($request->has('title')) {
+            $film->where('title', 'like', '%'.$request->get('title').'%');
+        }
+        if ($request->has('description')) {
+            $film->where('description', 'like', '%'.$request->get('description').'%');
+        }
+        if ($request->has('lengthMin')) {
+            $film->where('length', '>=', '%'.$request->get('lengthMin').'%');
+        }
+        if ($request->has('lengthMax')) {
+            $film->where('length', '<=', '%'.$request->get('lengthMax').'%');
+        }
         
-
-        return new FilmsCollection($film);
-    }
-
-    public function searchAll(){
-        return Film::paginate(20); 
+        return new FilmsCollection($film->paginate(20));
     }
 }
