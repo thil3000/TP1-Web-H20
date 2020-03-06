@@ -122,24 +122,18 @@ class FilmsController extends Controller
      * search the keyword in storage.
      *
      * 
-    //  * @param  \App\Film  $film
+     * @param  \App\Film  $film
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
 
-    public function search(SearchFilmRequest $request)
+    public function search(Request $request, $keyword)
   
     {
-        // $data = $request->validate(); //to complete
-        
-        
-        
-        
-$film;
-
-        if($data = $request->get('title') != '' ){
-            $film = Film::where('title', 'like', "%$data%");
-        }
+        $film = Film::where('id',1);
+//        if($request->get('title') != ''){
+            $film = Film::where('title', 'like', '%'.$keyword.'%')->paginate(20);
+//        }
 
         // elseif($data = $request->get('release_year') != '') {
         //     $film = Film::where('release_year', 'like', "%$data%");
@@ -156,9 +150,9 @@ $film;
         //          ->orWhere('length', 'like', "%$data%")
         //          ->orWhere('rating', 'like', "%$data%")
         //          ->paginate(20);
-        $film->paginate(20);
+        
 
-                return new FilmsCollection($film);
+        return new FilmsCollection($film);
     }
 
     public function searchAll(){
