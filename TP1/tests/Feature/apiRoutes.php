@@ -17,13 +17,13 @@ class apiRoutes extends TestCase
     public function testExample()
     {
 
-        $response = $this->getJson('api/films');
+        $response = $this->getJson('api/films/search');
 
-        $response->dumpHeaders();
+        // $response->dumpHeaders();
 
-        $response->dumpSession();
+        // $response->dumpSession();
 
-        $response->dump();
+        // $response->dump();
 
 
         $response->assertStatus(200);

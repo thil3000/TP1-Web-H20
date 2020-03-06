@@ -17,6 +17,7 @@ use App\Http\Resources\ActorsCollection;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
+use App\Http\Requests\SearchFilmRequest;
 
 class FilmsController extends Controller
 {
@@ -121,22 +122,46 @@ class FilmsController extends Controller
      * search the keyword in storage.
      *
      * 
-     * @param  \App\keyword  $keyword
+    //  * @param  \App\Film  $film
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
 
-    public function search(Request $request, String $keyword)
+    public function search(SearchFilmRequest $request)
+  
     {
-        //  $data = $request->get('keyword');
+        // $data = $request->validate(); //to complete
+        
+        
+        
+        
+$film;
 
-         $film = Film::where('title', 'like', "%$keyword%")
-                 ->orWhere('release_year', 'like', "%$keyword%")
-                 ->orWhere('length', 'like', "%$keyword%")
-                 ->orWhere('rating', 'like', "%$keyword%")
-                 ->paginate(20);
-                
+        if($data = $request->get('title') != '' ){
+            $film = Film::where('title', 'like', "%$data%");
+        }
+
+        // elseif($data = $request->get('release_year') != '') {
+        //     $film = Film::where('release_year', 'like', "%$data%");
+        // }
+        // elseif($data = $request->get('length') != '' ){
+        //     $film = Film::where('length', 'like', "%$data%");
+        // }
+        // elseif($data = $request->get('rating') != ''){
+        //     $film = Film::where('rating', 'like', "%$data%");
+        // }
+
+        //  $film = Film::where('title', 'like', "%$data%")
+        //          ->orWhere('release_year', 'like', "%$data%")
+        //          ->orWhere('length', 'like', "%$data%")
+        //          ->orWhere('rating', 'like', "%$data%")
+        //          ->paginate(20);
+        $film->paginate(20);
+
                 return new FilmsCollection($film);
     }
-    
+
+    public function searchAll(){
+        return Film::paginate(20); 
+    }
 }
